@@ -15,52 +15,69 @@ let getHumanChoice = () => {
   }
 };
 
+// Scoreboard
+let humanScore = 0;
+let computerScore = 0;
+
+// Add elements using DOM methods
+const buttons = document.querySelectorAll("button");
+
+const container = document.querySelector("#container");
+
+const div = document.createElement('div');
+container.appendChild(div);
+
+
+const score = document.createElement('p');
+score.setAttribute('id', 'scoreboard');
+div.appendChild(score);
+
+const para = document.createElement('p');
+para.setAttribute('id', 'result');
+div.appendChild(para);
+
 //Play One Round
 let playRound = (humanChoice, computerChoice) => {
   if(humanChoice === 'rock') {
     if(computerChoice === 'paper') {
-      console.log('You lose Paper beats Rock');
+      para.textContent ='You lose! Paper beats Rock';
       return "lose";
     } else if(computerChoice === 'scissors') {
-      console.log("You WIN");
+      para.textContent ="You win! Rock beats scissors";
       return "win";
     } else {
-      console.log("Rock vs. Rock is a tie");
+      para.textContent ="It's a tie";
       return null;
     }
   } else if(humanChoice === 'paper') {
     if(computerChoice === 'scissors') {
-      console.log('You lose Scissors beats Paper');
+      para.textContent ='You lose! Scissors beats Paper';
       return "lose";
     } else if(computerChoice === 'rock') {
-      console.log("You WIN");
+      para.textContent = "You win! Paper beats rock";
       return "win";
     } else {
-      console.log("Paper vs. Paper a tie");
+      para.textContent = "It's a tie";
       return null;
     }
   } else if(humanChoice === 'scissors') {
     if(computerChoice === 'rock') {
-      console.log('You lose Rock beats Scissors');
+      para.textContent = 'You lose! Rock beats Scissors';
       return "lose";
     } else if(computerChoice === 'paper') {
-      console.log("You WIN");
+      para.textContent = "You win! Scissors beats paper";
       return "win";
     } else {
-      console.log("Scissors vs. Scissors is a tie");
+      para.textContent = "It's a tie";
       return null;
     }
   }
 };
 
-// Scoreboard
-let humanScore = 0;
-let computerScore = 0;
-// Button user interface
-const buttons = document.querySelectorAll("button");
 
+// Add button functionality
 buttons.forEach((button) => {
-  button.addEventListener("click", () => {
+  button.addEventListener("click", (e) => {
     let winOrLose = playRound(button.id, getComputerChoice()); 
 
     if(winOrLose === 'win'){
@@ -68,31 +85,20 @@ buttons.forEach((button) => {
     } else if (winOrLose == 'lose'){
       computerScore++;
     }
-    console.log(`Human Score: ${humanScore}`);
-    console.log(`Computer Score: ${computerScore}`)
-  })
+
+    score.textContent = `${humanScore} - ${computerScore}`;
+    
+    if(humanScore === 5) {
+      para.textContent ="Game over! You win";
+      buttons.forEach((button) => {
+        button.disabled = true;
+      });
+    } else if (computerScore === 5) {
+      para.textContent ="Game over! You lose";
+      buttons.forEach((button) => {
+        button.disabled = true;
+      });
+    }
+
+  });
 });
-
-
-
-
-//Play the Round 5 times
-// function playGame() {
-//   let humanScore = 0;
-//   let computerScore = 0;
-
-//   for (let index = 1; index <= 5; index++) {
-//     let winOrLose = playRound(getHumanChoice(), getComputerChoice()); 
-
-//     if(winOrLose === 'win'){
-//       humanScore++;
-//     } else if (winOrLose == 'lose'){
-//       computerScore++;
-//     }
-//   }
-
-;
-// }
-
-//Start the Game
-//playGame()
