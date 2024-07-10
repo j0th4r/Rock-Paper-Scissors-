@@ -40,7 +40,7 @@ div.appendChild(para);
 let playRound = (humanChoice, computerChoice) => {
   if(humanChoice === 'rock') {
     if(computerChoice === 'paper') {
-      para.textContent ='You lose! Paper beats Rock';
+      para.textContent ='You lose! Paper beats rock';
       return "lose";
     } else if(computerChoice === 'scissors') {
       para.textContent ="You win! Rock beats scissors";
@@ -51,7 +51,7 @@ let playRound = (humanChoice, computerChoice) => {
     }
   } else if(humanChoice === 'paper') {
     if(computerChoice === 'scissors') {
-      para.textContent ='You lose! Scissors beats Paper';
+      para.textContent ='You lose! Scissors beats paper';
       return "lose";
     } else if(computerChoice === 'rock') {
       para.textContent = "You win! Paper beats rock";
@@ -62,7 +62,7 @@ let playRound = (humanChoice, computerChoice) => {
     }
   } else if(humanChoice === 'scissors') {
     if(computerChoice === 'rock') {
-      para.textContent = 'You lose! Rock beats Scissors';
+      para.textContent = 'You lose! Rock beats scissors';
       return "lose";
     } else if(computerChoice === 'paper') {
       para.textContent = "You win! Scissors beats paper";
