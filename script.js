@@ -53,24 +53,46 @@ let playRound = (humanChoice, computerChoice) => {
   }
 };
 
-//Play the Round 5 times
-function playGame() {
-  let humanScore = 0;
-  let computerScore = 0;
+// Scoreboard
+let humanScore = 0;
+let computerScore = 0;
+// Button user interface
+const buttons = document.querySelectorAll("button");
 
-  for (let index = 1; index <= 5; index++) {
-    let winOrLose = playRound(getHumanChoice(), getComputerChoice()); 
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    let winOrLose = playRound(button.id, getComputerChoice()); 
 
     if(winOrLose === 'win'){
       humanScore++;
     } else if (winOrLose == 'lose'){
       computerScore++;
     }
-  }
+    console.log(`Human Score: ${humanScore}`);
+    console.log(`Computer Score: ${computerScore}`)
+  })
+});
 
-  console.log(`Human Score: ${humanScore}`);
-  console.log(`Computer Score: ${computerScore}`);
-}
+
+
+
+//Play the Round 5 times
+// function playGame() {
+//   let humanScore = 0;
+//   let computerScore = 0;
+
+//   for (let index = 1; index <= 5; index++) {
+//     let winOrLose = playRound(getHumanChoice(), getComputerChoice()); 
+
+//     if(winOrLose === 'win'){
+//       humanScore++;
+//     } else if (winOrLose == 'lose'){
+//       computerScore++;
+//     }
+//   }
+
+;
+// }
 
 //Start the Game
-playGame()
+//playGame()
